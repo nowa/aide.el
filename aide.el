@@ -73,14 +73,15 @@ PROMPT is the prompt string we send to the API."
   (let ((result nil)
         (auth-value (format "Bearer %s" api-key)))
     (request
-      (format "https://api.openai.com/v1/engines/%s/completions" aide-completions-model)
+      "https://api.openai.com/v1/completions"
       :type "POST"
-      :data (json-encode `(("prompt" . ,prompt)
+      :data (json-encode `(("mode" . ,aide-completions-model)
+                           ("prompt" . ,prompt)
                            ("max_tokens" . ,aide-max-tokens)
                            ("temperature" . ,aide-temperature)
+                           ("top_p" . ,aide-top-p)
                            ("frequency_penalty" . ,aide-frequency-penalty)
-                           ("presence_penalty" . ,aide-presence-penalty)
-                           ("top_p" . ,aide-top-p)))
+                           ("presence_penalty" . ,aide-presence-penalty)))
       :headers `(("Authorization" . ,auth-value) ("Content-Type" . "application/json"))
       :sync t
       :parser 'json-read
@@ -153,10 +154,11 @@ INSTRUCTION and INPUT are the two params we send to the API."
   (let ((result nil)
         (auth-value (format "Bearer %s" api-key)))
     (request
-      "https://api.openai.com/v1/engines/text-davinci-edit-001/edits"
+      "https://api.openai.com/v1/edits"
       :type "POST"
-      :data (json-encode `(("input" . ,input)
+      :data (json-encode `(("model" . "text-davinci-edit-001")
                            ("instruction" . ,instruction)
+                           ("input" . ,input)))
                            ("temperature" . 0.9)))
       :headers `(("Authorization" . ,auth-value)
                  ("Content-Type" . "application/json"))

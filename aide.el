@@ -63,7 +63,7 @@
 the OpenAI API endpoint of this model."
   :type 'string
   :group 'aide
-  :options '("davinci", "text-davinci-002", "text-curie-001", "text-babbage-001", "text-ada-001"))
+  :options '("davinci", "gpt-3.5-turbo", "gpt-3.5-turbo-0301", "text-davinci-003", "text-davinci-002", "text-curie-001", "text-babbage-001", "text-ada-001"))
 
 (defun aide-openai-complete (api-key prompt)
   "Return the prompt answer from OpenAI API.

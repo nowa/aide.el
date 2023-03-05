@@ -158,7 +158,7 @@ INSTRUCTION and INPUT are the two params we send to the API."
       :type "POST"
       :data (json-encode `(("model" . "text-davinci-edit-001")
                            ("instruction" . ,instruction)
-                           ("input" . ,input)))
+                           ("input" . ,input)
                            ("temperature" . 0.9)))
       :headers `(("Authorization" . ,auth-value)
                  ("Content-Type" . "application/json"))
